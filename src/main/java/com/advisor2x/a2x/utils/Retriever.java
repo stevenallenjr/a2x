@@ -31,8 +31,10 @@ public class Retriever {
         String eventData = "";
         
         Element table = doc.select("table").get(0);
-        Elements rows = table.select("tr");
-
+        Elements tbody = table.select("tbody");
+        Elements rows = tbody.select("tr");
+        
+        String[] temp = null;
         for (int i = 0; i < rows.size(); i++) {
             Element row = rows.get(i);
             Elements cols = row.select("td");
@@ -40,25 +42,15 @@ public class Retriever {
             for(Element column:cols) {
                 eventData += column.text() + "|";
             }
-            String[] temp = eventData.split("\\|");
-            retVal.add(new Event(temp[0],temp[1],temp[2],temp[3],temp[4]));
+        }
+        temp = eventData.split("\\|");
+        
+        int numEvents = temp.length / 5;
+        for(int i=0;i<numEvents * 5;i+=5) {
+            retVal.add(new Event(temp[i], temp[i+1], temp[i+2], temp[i+3], temp[i+4]));
         }
         
         return retVal;
-        
-        /*for(Element row :rows)
-        { 
-            
-            Elements columns = row.select("td");
-            
-            for (Element column:columns)
-            {
-                eventData += column.text() + "|";
-            }
-            String[] temp = eventData.split("\\|");
-            retVal.add(new Event(temp[0],temp[1],temp[2],temp[3],temp[4]));
-        }
-        return retVal;*/
     }
     
     public static Event getNextEvent(List<Event> events, Date today) {

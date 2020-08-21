@@ -55,6 +55,6 @@ public class Event {
     
     public String toString() {
         return "Join us on " + DateFormatter.getDateReadout(date) + " for the Excel 401K session, " + title + ", with "
-                + speaker + ". " + desc;
+                + speaker + ". " + desc + " Register now at www.excel401k.com!";
     }
 }

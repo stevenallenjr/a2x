@@ -17,8 +17,8 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Welcome to the Advisor2X Alexa app. What would you like to do? Choose from: "
-                + "List upcoming events. Today's session.";
+        String speechText = "Welcome to the Advisor2X Alexa app. To use me, say something like: Alexa, ask Advisor2X when the next digital session is. "
+        		+ "Or, Alexa, ask Advisor2X what digital session is on September 10th.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("A2X", speechText)
